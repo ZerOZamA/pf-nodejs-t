@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
 const morgan = require('morgan');
-
+const cors = require('cors')
 //db
 
 const pokemon = require('./routes/pokemon');
@@ -12,7 +12,7 @@ const pokemon = require('./routes/pokemon');
 const user = require('./routes/user');
 
 //middleware owo
-const cors=require('./middleware/cors')
+
 const aut = require('./middleware/auth')
 const notFound = require('./middleware/notFound')
 
@@ -21,7 +21,7 @@ const notFound = require('./middleware/notFound')
 const indexing= require('./routing/index')
 
 //code use
-//app.use(cors)
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
