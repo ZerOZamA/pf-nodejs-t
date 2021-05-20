@@ -3,7 +3,7 @@ const { IamAuthenticator } = require('ibm-cloud-sdk-core');
 
 
 const authenticator = new IamAuthenticator({
-    apikey: 
+    apikey: process.env['apikey']
 });
 
 const service = new CloudantV1({
