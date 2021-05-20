@@ -7,10 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZerOZamA/nodejs.git"
-  },
+  "repository": "git+https://github.com/ZerOZamA/nodejs.git",
   "keywords": [
     "api"
   ],
@@ -22,6 +19,7 @@
   "homepage": "https://github.com/ZerOZamA/nodejs.git#readme",
   "dependencies": {
     "@cloudant/cloudant": "^4.3.1",
+    "@ibm-cloud/cloudant": "^0.0.15",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
