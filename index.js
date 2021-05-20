@@ -6,12 +6,11 @@ const cors = require('cors')
 //db
 
 
-const pokemon = require('./routes/pokemon');
 
 //pagers
 
 const user = require('./routes/user');
-
+const admin = require('./routes/admin');
 //middleware owo
 
 const aut = require('./middleware/auth')
@@ -32,8 +31,7 @@ app.use(express.urlencoded({extended : true}));
 app.get("/",indexing);
 app.use("/user",user);
 app.use(aut);
-app.use("/pokemon",pokemon);
-
+app.use("/admin",admin)
 app.use(notFound );
 
 app.listen(process.env.PORT || 3000 , ()=>{console.log('server running')});
