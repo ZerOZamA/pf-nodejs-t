@@ -2,8 +2,8 @@ const express = require('express');
 const user =express.Router();
 /*const poop = require('../pokedex.json').pokemon;*/
 const db =require("../config/database");
-const pokemon = require('./pokemon');
 const jwt = require('jsonwebtoken');
+const service = require('../config/cloudant')
 
 user.post("/signin",async(req,res,next)=>{
     const{user_name, user_mail, user_password}=req.body
@@ -31,24 +31,40 @@ user.get("/",async(req,res,next)=>{
 
 user.post("/login",async(req,res,next)=>{
     const {user_mail,user_password}= req.body;
-    const query = `SELECT * FROM user WHERE user_mail ='${user_mail}' AND user_password ='${user_password}';`;
 
     if(user_mail && user_password){    
-    const rows= await db.query(query);
-    console.log(rows)
-    if (rows.length==1){
-        const token = jwt.sign({
-            user_id:rows[0].user_id,
-            user_mail:rows[0].user_mail
-        },"debugkey");
-        console.log(token)
-        return res.status(201).json({code:201, message :  token });
+        service.getDocument({
+            db: 'admin',
+            docId: user_mail
+          }).then(response => {
+            console.log(response.result);
+            const jsuser = response.result
+            console.log(jsuser['password'])
+                if(user_password==jsuser['password'])
+                {
+                    console.log(jsuser['password'])
+                    console.log(jsuser['_id'])
+                    const token = jwt.sign({
+                    pass:jsuser['password']
+                    },"debugkey");
+                    console.log(token)
+                    return res.status(201).json({code:201, message :  token });
+                }
+            return res.status(200).json({code:200, message:"error datos erroneos"});
+
+          }).catch(error => {
+            console.log("Error status code: " + error.status);
+            console.log("Error status text: " + error.statusText);
+            console.log("Error message:     " + error.message);
+            console.log("Error details:     " + error.body)
+          });
+        
 
     }
     else {
         return res.status(200).json({code:200, message:"error datos erroneos"});
     }
     
-}
+
 });
 module.exports=user;

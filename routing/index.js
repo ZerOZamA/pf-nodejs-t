@@ -1,10 +1,7 @@
-const response =require("../config/cloudant")
+const { CloudantV1 } = require('@ibm-cloud/cloudant');
+const service = require('../config/cloudant')
 
 module.exports=(req,res,next)=>{
-    response.getAllDbs().then(response => {
-        console.log(response.result);
-        return res.status(200).json({ code : 1, mensage : response.result});
-      });
-    
+   return res.status(200).json({status:200,mensage:'systema de usuarios'});
     
     }
