@@ -35,7 +35,9 @@ admin.post("/",async (req,res , next)=>{
 
 admin.post("/find",async (req ,res, next)=>{
 const {nombre}= req.body;
-    const selector = {
+    if(nombre)
+    {
+        const selector = {
         "nombre": {
            "$eq": nombre
         }
@@ -58,6 +60,11 @@ const {nombre}= req.body;
         console.log("Error details:     " + error.body)
         return res.status(400).json({Error_status_code: error.status, Error_message: error.status,Error_details:error.body})
       });
+    }
+    else
+    {
+        return res.status(400).json({mensage:"no data submited"})   
+    }
 });
 
 admin.delete("/",async (req ,res, next)=>{
