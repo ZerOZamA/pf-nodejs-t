@@ -33,7 +33,6 @@ user.post("/login",async(req,res,next)=>{
             console.log("Error message:     " + error.message);
             console.log("Error details:     " + error.body)
           });
-          return res.status(200).json({code:200, message:"error datos erroneos"});
 
     }
     else {

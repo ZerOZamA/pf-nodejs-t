@@ -15,3 +15,4 @@ par crear un registro es bajo /admin/ usando post pasando los datos de  nombre ,
 para buscar un registro por nombre es bajo /admin/find pasas el nombre y te lanzara un json con todos los registros con ese nombre y la demas data incuyendo el _id y el rev estos se usaran para borrar los registros.
 para borrar es bajo /admin/ con el metodo de delete pasas en el body en x-www-form-urlencoded el _id y el rev 
 para modificar es bajo /admin/ usando put y pasando la data pormedio del body en x-www-form-urlencoded se tiene que asar el _id de el registro para que funcione 
+### Heroku URL https://talleres-js.herokuapp.com
