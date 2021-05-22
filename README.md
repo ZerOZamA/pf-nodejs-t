@@ -1,4 +1,7 @@
 # pf-nodejs-t
+
+##Alumno : ISRAEL LADRON DE GUEVARA DOMINGO
+
 proyecto final taller node js uaq
 Funcionamiento :<br>
 Base de datos : IBM-Cloudant NOsql DataBase<br>
